@@ -32,14 +32,14 @@ const router = createRouter({
 
     },
     {
-      path: '/order-maintenance',
+      path: '/maintenance',
       name: 'OrderMaintenance',
       component: OrderMaintenance,
       meta: { auth: true },
 
     },
     {
-      path: '/submit-feedback',
+      path: '/feedback',
       name: 'SubmitFeedback',
       component: SubmitFeedback,
       meta: { auth: true },
