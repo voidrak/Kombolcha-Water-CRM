@@ -2,7 +2,11 @@
 import { onMounted, reactive } from "vue";
 import GuestLayout from "@/layout/GuestLayout.vue";
 import Logo from "@/ui/Logo.vue";
+import { useAuthStore } from "@/stores/auth";
+import { storeToRefs } from "pinia";
 
+const authStore = useAuthStore();
+const { errors } = storeToRefs(useAuthStore());
 
 const formData = reactive({
   name: "",
@@ -12,9 +16,10 @@ const formData = reactive({
 });
 
 const submitForm = () => {
-  console.log(formData);
+  authStore.authenticate("register", formData);
 };
 
+onMounted(() => (errors.value = {}));
 
 </script>
 
@@ -34,18 +39,18 @@ const submitForm = () => {
               <input v-model="formData.name" id="name" name="name" type="text" autocomplete="name"
                 class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-bg-light-green"
                 placeholder="Enter name" />
-              <!-- <p v-if="errors.name" class="text-sm text-red-500">
+              <p v-if="errors.name" class="text-sm text-red-500">
                 {{ errors.name[0] }}
-              </p> -->
+              </p>
             </div>
             <div>
               <label for="email" class="mb-2 block text-sm text-gray-800">Email</label>
               <input v-model="formData.email" id="email" name="email" type="email" autocomplete="email"
                 class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-bg-light-green"
                 placeholder="Enter email" />
-              <!-- <p v-if="errors.email" class="text-sm text-red-500">
+              <p v-if="errors.email" class="text-sm text-red-500">
                 {{ errors.email[0] }}
-              </p> -->
+              </p>
             </div>
             <div>
               <label for="password" class="mb-2 block text-sm text-gray-800">Password</label>
@@ -53,9 +58,9 @@ const submitForm = () => {
                 autocomplete="new-password"
                 class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-bg-light-green"
                 placeholder="Enter password" />
-              <!-- <p v-if="errors.password" class="text-sm text-red-500">
+              <p v-if="errors.password" class="text-sm text-red-500">
                 {{ errors.password[0] }}
-              </p> -->
+              </p>
             </div>
             <div>
               <label for="password_confirmation" class="mb-2 block text-sm text-gray-800">Confirm Password</label>
@@ -64,9 +69,9 @@ const submitForm = () => {
                 class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-bg-light-green"
                 placeholder="Confirm password" />
 
-              <!-- <p v-if="errors.password_confirmation" class="text-sm text-red-500">
+              <p v-if="errors.password_confirmation" class="text-sm text-red-500">
                 {{ errors.password_confirmation[0] }}
-              </p> -->
+              </p>
             </div>
             <div>
               <button type="submit" class="w-full rounded-md bg-blue-500 p-2 text-white">

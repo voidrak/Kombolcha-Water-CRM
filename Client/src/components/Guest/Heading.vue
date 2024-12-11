@@ -1,6 +1,9 @@
 <script setup>
 import Logo from '@/ui/Logo.vue';
+import { useAuthStore } from "@/stores/auth";
 
+
+const authStore = useAuthStore();
 
 </script>
 
@@ -31,7 +34,7 @@ import Logo from '@/ui/Logo.vue';
 
       <!-- CTA and Hamburger icon -->
       <div class="flex items-center">
-        <div class="mr-5 lg:mr-0">
+        <div v-if="!authStore.user" class="mr-5 lg:mr-0">
           <RouterLink :to="{ name: 'Login' }">
             <button class="font-bold py-2 px-6 text-gray-600 hover:text-gray-700 text-base hidden lg:inline-flex">
               Login
@@ -43,6 +46,13 @@ import Logo from '@/ui/Logo.vue';
               Sign up
             </button>
           </RouterLink>
+        </div>
+        <div v-else class="">
+          <form @submit.prevent="authStore.logout" class="">
+            <button
+              class="hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2  px-5 py-2 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-red-500">Log
+              out</button>
+          </form>
         </div>
         <div class="block lg:hidden">
           <button class="flex items-center px-4 py-3 border focus:outline-none">
