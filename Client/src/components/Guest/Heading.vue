@@ -18,18 +18,36 @@ const authStore = useAuthStore();
         <RouterLink :to="{ name: 'Home' }" class="block font-bold mt-4 lg:inline-block   lg:mt-0 mr-10">
           Home
         </RouterLink>
-        <a href="#" class="block font-bold mt-4 lg:inline-block hover:text-gray-700 lg:mt-0 mr-10">
-          Services
-        </a>
-        <a href="#" class="block font-bold mt-4 lg:inline-block hover:text-gray-700 lg:mt-0 mr-10">
+        <div class="relative font-[sans-serif] w-max mx-auto group">
+          <button type="button" id="dropdownToggle" class="block font-bold mt-4 lg:inline-block   lg:mt-0 mr-10">
+            Services
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 fill-black inline ml-3" viewBox="0 0 24 24">
+              <path fill-rule="evenodd"
+                d="M11.99997 18.1669a2.38 2.38 0 0 1-1.68266-.69733l-9.52-9.52a2.38 2.38 0 1 1 3.36532-3.36532l7.83734 7.83734 7.83734-7.83734a2.38 2.38 0 1 1 3.36532 3.36532l-9.52 9.52a2.38 2.38 0 0 1-1.68266.69734z"
+                clip-rule="evenodd" data-original="#000000" />
+            </svg>
+          </button>
+
+          <ul id="dropdownMenu"
+            class='w-0  h-0   transition-all duration-200 ease-linear  block right-2    absolute shadow-lg border border-gray-100 bg-white group-hover:py-2 z-[1000] group-hover:min-w-full group-hover:w-max rounded group-hover:h-[100px] overflow-hidden'>
+            <RouterLink :to="{ name: 'OrderMaintenance' }">
+              <li class='py-2.5 px-5 hover:bg-light-blue text-black text-sm cursor-pointer'>Order Maintenance
+              </li>
+            </RouterLink>
+            <RouterLink :to="{ name: 'SubmitFeedback' }">
+              <li class='py-2.5 px-5 hover:bg-light-blue text-black text-sm cursor-pointer'>Give Feedback</li>
+            </RouterLink>
+
+          </ul>
+        </div>
+        <RouterLink :to="{ name: 'Vacancy' }" href="#"
+          class="block font-bold mt-4 lg:inline-block hover:text-gray-700 lg:mt-0 mr-10">
           Vacancy
-        </a>
+        </RouterLink>
         <a href="#" class="block font-bold hover:text-gray-700 mt-4 lg:inline-block lg:mt-0 mr-10">
           About us
         </a>
-        <a href="/index_dark.html" class="block font-bold hover:text-gray-700 mt-4 lg:inline-block lg:mt-0">
-          Feedback
-        </a>
+
       </div>
 
       <!-- CTA and Hamburger icon -->
