@@ -46,6 +46,26 @@ export const useMaintenanceStore = defineStore("maintenanceStore", {
       }
     },
 
+    /*********************  Update Maintenance ********************** */
+
+    async updateMaintenance(maintenance, type) {
+
+      const res = await fetch(`/api/maintenances/${maintenance}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+
+        body: JSON.stringify({ type: type })
+      })
+      const data = await res.json()
+
+      if (data.errors) {
+        this.errors = data.errors
+      } else {
+        this.errors = {}
+      }
+    },
     /*********************  Delete Maintenance ********************** */
 
     async deleteMaintenance(maintenance) {

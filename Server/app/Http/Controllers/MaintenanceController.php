@@ -50,7 +50,15 @@ class MaintenanceController extends Controller
      */
     public function update(Request $request, Maintenance $maintenance)
     {
-        //
+
+
+
+        if ($request->type === "completed") {
+            return   $maintenance->update(['completed' => true]);
+        }
+        if ($request->type === "approve") {
+            return  $maintenance->update(['approved' => true]);
+        }
     }
 
     /**

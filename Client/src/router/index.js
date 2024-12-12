@@ -10,6 +10,7 @@ import AdminHome from '@/views/Admin/AdminHome.vue'
 import AdminMaintenancePage from '@/views/Admin/AdminMaintenancePage.vue'
 import AdminUser from '@/views/Admin/AdminUser.vue'
 import AdminFeedback from '@/views/Admin/AdminFeedback.vue'
+import MaintenanceHome from '@/views/Maintenance/MaintenanceHome.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -77,6 +78,12 @@ const router = createRouter({
       name: "AdminFeedback",
       component: AdminFeedback,
       meta: { admin: true },
+    },
+    {
+      path: "/maintenance",
+      name: "MaintenanceHome",
+      component: MaintenanceHome,
+      meta: { Maintenance: true },
     }
 
   ],
@@ -86,6 +93,15 @@ router.beforeEach(async (to, from) => {
   const authStore = useAuthStore();
   await authStore.getUser();
 
+  if (authStore.user?.role === "maintenance" && to.meta.guest) {
+    return { name: "MaintenanceHome" };
+  }
+  if (authStore.user?.role === "maintenance" && to.meta.auth) {
+    return { name: "MaintenanceHome" };
+  }
+  if (authStore.user?.role === "maintenance" && to.meta.hybrid) {
+    return { name: "MaintenanceHome" };
+  }
   if (authStore.user?.role === "admin" && to.meta.guest) {
     return { name: "adminHome" };
   }

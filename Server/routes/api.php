@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/maintenances', [MaintenanceController::class, 'index']);
     Route::post('/maintenances', [MaintenanceController::class, 'store']);
+    Route::put('/maintenances/{maintenance}', [MaintenanceController::class, 'update']);
     Route::delete('/maintenances/{maintenance}', [MaintenanceController::class, 'destroy'])->middleware(AdminMiddleware::class);
 });
 
