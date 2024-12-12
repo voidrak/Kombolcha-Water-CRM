@@ -36,12 +36,12 @@ class User extends Authenticatable
 
     public function feedbacks()
     {
-        return $this->hasMany(Feedback::class);
+        return $this->hasMany(Feedback::class, 'submitted_by');
     }
 
     public function maintenance()
     {
-        return $this->hasMany(Maintenance::class);
+        return $this->hasMany(Maintenance::class, 'submitted_by');
     }
 
 

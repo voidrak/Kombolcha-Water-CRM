@@ -1,6 +1,12 @@
 <script setup>
 import GuestLayout from '@/layout/GuestLayout.vue';
+import { useFeedbackStore } from '@/stores/feedback';
+import { storeToRefs } from 'pinia';
 import { reactive } from 'vue';
+
+
+const { createFeedback } = useFeedbackStore();
+const { errors } = storeToRefs(useFeedbackStore())
 
 const formData = reactive({
   message: "",
@@ -8,13 +14,13 @@ const formData = reactive({
 
 
 const submitForm = () => {
-  console.log("hey");
+  createFeedback(formData)
 };
 </script>
 
 <template>
   <GuestLayout>
-    <diiv class="w-full">
+    <div class="w-full">
 
 
       <div class="mx-auto w-full mt-16 max-w-2xl rounded-2xl border border-gray-300 p-8">
@@ -28,9 +34,9 @@ const submitForm = () => {
               <textarea v-model="formData.message" id="message" name="message" type="text" autocomplete="text"
                 class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-bg-light-green"
                 placeholder="Enter Feedback" />
-              <!-- <p v-if="errors.message" class="text-sm text-red-500">
-        {{ errors.message[0] }}
-      </p> -->
+              <p v-if="errors.message" class="text-sm text-red-500">
+                {{ errors.message[0] }}
+              </p>
             </div>
 
             <div class="max-w-[150px]  ml-auto">
@@ -41,6 +47,6 @@ const submitForm = () => {
           </div>
         </form>
       </div>
-    </diiv>
+    </div>
   </GuestLayout>
 </template>

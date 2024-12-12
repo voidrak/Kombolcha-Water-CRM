@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Maintenance;
-use App\Http\Requests\StoreMaintenanceRequest;
-use App\Http\Requests\UpdateMaintenanceRequest;
+use Illuminate\Http\Request;
 
 class MaintenanceController extends Controller
 {
@@ -19,9 +18,16 @@ class MaintenanceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMaintenanceRequest $request)
+    public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            "address" => 'required|string',
+            'phone_number' => ['required', 'regex:/^09\d{8}$/'],
+            "description" => 'required|string',
+        ]);
+
+        return  $request->user()->maintenance()->create($validated);
     }
 
     /**
@@ -35,7 +41,7 @@ class MaintenanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMaintenanceRequest $request, Maintenance $maintenance)
+    public function update(Request $request, Maintenance $maintenance)
     {
         //
     }

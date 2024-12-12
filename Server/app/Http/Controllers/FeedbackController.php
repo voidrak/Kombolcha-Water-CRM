@@ -12,7 +12,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        return Feedback::all();
     }
 
     /**
@@ -21,7 +21,7 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "message" => "required | unique"
+            "message" => 'required| string | unique:feedbacks'
         ]);
 
         return  $request->user()->feedbacks()->create($validated);

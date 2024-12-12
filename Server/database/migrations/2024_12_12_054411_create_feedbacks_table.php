@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
+            $table->string("message");
+            $table->foreignId("submitted_by")->constrained('users')->onDelete("cascade");
             $table->timestamps();
         });
     }
