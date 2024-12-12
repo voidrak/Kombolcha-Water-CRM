@@ -74,7 +74,7 @@ const formatDate = (date) => {
         <div v-for="maintenance in maintenances" :key="maintenance.id"
           class="w-full relative max-w-4xl shadow-xl border py-3 px-4 border-gray-300">
           <div class="space-y-2">
-            <h1>Requester: <span class="font-bold">{{ maintenance.creator.name }}</span></h1>
+            <h1>Customer: <span class="font-bold">{{ maintenance.creator.name }}</span></h1>
             <h1>Phone Number: <span class="font-bold">{{ maintenance.phone_number }}</span></h1>
             <h1>Address: <span class="font-bold">{{ maintenance.address }}</span></h1>
             <h1>Issued Date: <span class="font-bold">{{ formatDate(maintenance.created_at) }}</span></h1>

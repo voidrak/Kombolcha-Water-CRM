@@ -8,6 +8,24 @@ export const useFeedbackStore = defineStore("feedbackStore", {
   },
 
   actions: {
+    /*********************  GetAll  Feedback ********************** */
+    async getAllFeedbacks() {
+      const res = await fetch("/api/feedbacks", {
+        method: "Get",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+
+      if (data.errors) {
+        this.errors = data.errors;
+      } else {
+        this.errors = {};
+        return data
+      }
+    },
+
     /*********************  Create Feedback ********************** */
     async createFeedback(formData) {
       const res = await fetch("/api/feedbacks", {
@@ -24,6 +42,22 @@ export const useFeedbackStore = defineStore("feedbackStore", {
       } else {
         this.errors = {};
         router.push({ name: "Home" });
+      }
+    },
+
+    async deleteFeedback(feedback) {
+      const res = await fetch(`/api/feedbacks/${feedback}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      const data = await res.json()
+
+      if (data.errors) {
+        this.errors = data.errors
+      } else {
+        this.errors = {}
       }
     },
 

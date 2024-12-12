@@ -12,7 +12,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        return Feedback::all();
+        return Feedback::with("creator")->get();
     }
 
     /**
@@ -48,6 +48,6 @@ class FeedbackController extends Controller
      */
     public function destroy(Feedback $feedback)
     {
-        //
+        $feedback->delete();
     }
 }

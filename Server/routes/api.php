@@ -26,6 +26,7 @@ Route::delete('/users/{user}', function (User $user) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/feedbacks', [FeedbackController::class, 'index']);
     Route::post('/feedbacks', [FeedbackController::class, 'store']);
+    Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy']);
 });
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/maintenances', [MaintenanceController::class, 'index']);

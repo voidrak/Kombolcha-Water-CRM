@@ -30,7 +30,7 @@ const handleDelete = async (id) => {
             <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Name</th>
             <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Email</th>
 
-            <th class="w-1/4 text-center py-4 px-6 text-left text-gray-600 font-bold uppercase">Option</th>
+            <th class="w-1/4 text-center py-4 px-6  text-gray-600 font-bold uppercase">Option</th>
           </tr>
         </thead>
         <tbody class="bg-white">
