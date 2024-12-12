@@ -10,7 +10,7 @@ export const useFeedbackStore = defineStore("feedbackStore", {
   actions: {
     /*********************  Create Feedback ********************** */
     async createFeedback(formData) {
-      const res = await fetch("/api/feedback", {
+      const res = await fetch("/api/feedbacks", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

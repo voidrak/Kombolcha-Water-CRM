@@ -5,6 +5,8 @@ import AdminLayout from '@/layout/AdminLayout.vue';
 import { useMaintenanceStore } from '@/stores/maintenance';
 
 const { getAllMaintenances } = useMaintenanceStore()
+const { deleteMaintenance } = useMaintenanceStore();
+
 const maintenances = ref([]);
 const filters = ref({});
 
@@ -22,6 +24,8 @@ const setFilter = (filterKey, filterValue) => {
   }
 
   fetchMaintenances();
+
+  console.log(maintenances.value);
 };
 
 
@@ -31,6 +35,15 @@ const isActiveFilter = (filterKey, filterValue) => {
   }
   return filters.value[filterKey] === filterValue;
 };
+
+const handleDelete = (id) => {
+  deleteMaintenance(id);
+  fetchMaintenances();
+
+}
+
+
+
 </script>
 
 <template>
@@ -58,7 +71,7 @@ const isActiveFilter = (filterKey, filterValue) => {
         <div v-for="maintenance in maintenances" :key="maintenance.id"
           class="w-full relative max-w-4xl shadow-xl border py-3 px-4 border-gray-300">
           <div class="space-y-2">
-            <h1>Requester: <span class="font-bold">{{ maintenance.requester_name }}</span></h1>
+            <h1>Requester: <span class="font-bold">{{ maintenance.creator.name }}</span></h1>
             <h1>Phone Number: <span class="font-bold">{{ maintenance.phone_number }}</span></h1>
             <h1>Address: <span class="font-bold">{{ maintenance.address }}</span></h1>
             <h1>Issued Date: <span class="font-bold">{{ maintenance.issued_date }}</span></h1>
@@ -67,7 +80,8 @@ const isActiveFilter = (filterKey, filterValue) => {
                 }}</span></h1>
           </div>
           <div class="absolute top-0 right-5 space-x-3 ">
-            <button class="px-2 py-1 mt-2 rounded-md bg-red-500 text-white">Delete</button>
+            <button @click="handleDelete(maintenance.id)"
+              class="px-2 py-1 mt-2 rounded-md bg-red-500 text-white">Delete</button>
             <button v-if="maintenance.completed"
               class="px-2 py-1 mt-2 rounded-md bg-green-500 text-white">Approve</button>
           </div>

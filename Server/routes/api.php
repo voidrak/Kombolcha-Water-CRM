@@ -13,12 +13,13 @@ Route::get('/user', function (Request $request) {
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/feedback', [FeedbackController::class, 'index']);
-    Route::post('/feedback', [FeedbackController::class, 'store']);
+    Route::get('/feedbacks', [FeedbackController::class, 'index']);
+    Route::post('/feedbacks', [FeedbackController::class, 'store']);
 });
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/maintenance', [MaintenanceController::class, 'index']);
-    Route::post('/maintenance', [MaintenanceController::class, 'store']);
+    Route::get('/maintenances', [MaintenanceController::class, 'index']);
+    Route::post('/maintenances', [MaintenanceController::class, 'store']);
+    Route::delete('/maintenances/{maintenance}', [MaintenanceController::class, 'destroy']);
 });
 
 

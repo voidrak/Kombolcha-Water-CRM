@@ -12,7 +12,7 @@ class MaintenanceController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Maintenance::query();
+        $query = Maintenance::with('creator');
 
         if ($request->has('completed') && $request->input('completed') !== '') {
             $query->where('completed', $request->input('completed'));
@@ -22,7 +22,7 @@ class MaintenanceController extends Controller
             $query->where('approved', $request->input('approved'));
         }
 
-        return response()->json($query->get());
+        return $query->get();
     }
 
     /**
@@ -58,6 +58,6 @@ class MaintenanceController extends Controller
      */
     public function destroy(Maintenance $maintenance)
     {
-        //
+        return $maintenance->delete();
     }
 }
