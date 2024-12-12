@@ -8,6 +8,7 @@ import { useAuthStore } from "@/stores/auth";
 import VacancyPage from '@/views/User/VacancyPage.vue'
 import AdminHome from '@/views/Admin/AdminHome.vue'
 import AdminMaintenancePage from '@/views/Admin/AdminMaintenancePage.vue'
+import AdminUser from '@/views/Admin/AdminUser.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,8 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: HomeView,
+      meta: { hybrid: true },
+
     },
     {
       path: '/register',
@@ -60,6 +63,12 @@ const router = createRouter({
       path: "/admin/maintenance",
       name: "AdminMaintenance",
       component: AdminMaintenancePage,
+      meta: { admin: true },
+    },
+    {
+      path: "/admin/users",
+      name: "AdminUser",
+      component: AdminUser,
       meta: { admin: true },
     }
 

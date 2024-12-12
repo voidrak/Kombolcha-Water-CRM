@@ -22,7 +22,7 @@ class MaintenanceController extends Controller
             $query->where('approved', $request->input('approved'));
         }
 
-        return $query->get();
+        return $query->latest()->get();
     }
 
     /**

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-
+import { format } from 'date-fns';
 import AdminLayout from '@/layout/AdminLayout.vue';
 import { useMaintenanceStore } from '@/stores/maintenance';
 
@@ -42,6 +42,9 @@ const handleDelete = (id) => {
 
 }
 
+const formatDate = (date) => {
+  return format(new Date(date), 'dd/MM/yy');
+};
 
 
 </script>
@@ -74,7 +77,7 @@ const handleDelete = (id) => {
             <h1>Requester: <span class="font-bold">{{ maintenance.creator.name }}</span></h1>
             <h1>Phone Number: <span class="font-bold">{{ maintenance.phone_number }}</span></h1>
             <h1>Address: <span class="font-bold">{{ maintenance.address }}</span></h1>
-            <h1>Issued Date: <span class="font-bold">{{ maintenance.issued_date }}</span></h1>
+            <h1>Issued Date: <span class="font-bold">{{ formatDate(maintenance.created_at) }}</span></h1>
             <h1>Description: <span class="font-bold">{{ maintenance.description }}</span></h1>
             <h1>Status: <span class="font-bold">{{ `${maintenance.completed ? 'Completed' : 'Not Completed'}`
                 }}</span></h1>
