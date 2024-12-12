@@ -12,7 +12,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        //
+        return Vacancy::all();
     }
 
     /**
@@ -50,6 +50,6 @@ class VacancyController extends Controller
      */
     public function destroy(Vacancy $vacancy)
     {
-        //
+        return  $vacancy->delete();
     }
 }

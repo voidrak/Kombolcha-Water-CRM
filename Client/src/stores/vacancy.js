@@ -27,7 +27,7 @@ export const useVacancyStore = defineStore("vacancyStore", {
 
 
 
-    /*********************  Create feedback ********************** */
+    /*********************  Create vacancy ********************** */
     async createVacancy(formData) {
       const res = await fetch("/api/vacancies", {
         method: "POST",
@@ -46,11 +46,11 @@ export const useVacancyStore = defineStore("vacancyStore", {
       }
     },
 
-    /*********************  Update feedback ********************** */
+    /*********************  Update vacancy ********************** */
 
-    async updateVacancy(feedback, formData) {
+    async updateVacancy(vacancy, formData) {
 
-      const res = await fetch(`/api/vacancies/${feedback}`, {
+      const res = await fetch(`/api/vacancies/${vacancy}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -66,10 +66,10 @@ export const useVacancyStore = defineStore("vacancyStore", {
         this.errors = {}
       }
     },
-    /*********************  Delete feedback ********************** */
+    /*********************  Delete vacancy ********************** */
 
-    async deleteVacancy(feedback) {
-      const res = await fetch(`/api/vacancies/${feedback}`, {
+    async deleteVacancy(vacancy) {
+      const res = await fetch(`/api/vacancies/${vacancy}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
