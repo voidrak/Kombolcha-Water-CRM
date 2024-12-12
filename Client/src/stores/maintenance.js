@@ -8,7 +8,26 @@ export const useMaintenanceStore = defineStore("maintenanceStore", {
   },
 
   actions: {
-    /*********************  Create Feedback ********************** */
+    /*********************  Get All Maintenances ********************** */
+
+    async getAllMaintenances(filters = {}) {
+      const query = new URLSearchParams(filters).toString();
+      const res = await fetch(`/api/maintenance?${query}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+
+      return data;
+    },
+
+
+
+
+
+    /*********************  Create Maintenance ********************** */
     async createMaintenance(formData) {
       const res = await fetch("/api/maintenance", {
         method: "POST",
@@ -26,6 +45,10 @@ export const useMaintenanceStore = defineStore("maintenanceStore", {
         router.push({ name: "Home" });
       }
     },
+
+
+
+
 
   },
 });

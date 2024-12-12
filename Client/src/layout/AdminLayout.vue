@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { useAuthStore } from "@/stores/auth";
 import AdminLargeSideBar from "@/components/Admin/AdminLargeSideBar.vue";
+import Logo from "@/ui/Logo.vue";
 
 const authStore = useAuthStore();
 const isSideOpen = ref(false);

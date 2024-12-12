@@ -10,9 +10,19 @@ class MaintenanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = Maintenance::query();
+
+        if ($request->has('completed') && $request->input('completed') !== '') {
+            $query->where('completed', $request->input('completed'));
+        }
+
+        if ($request->has('approved') && $request->input('approved') !== '') {
+            $query->where('approved', $request->input('approved'));
+        }
+
+        return response()->json($query->get());
     }
 
     /**
