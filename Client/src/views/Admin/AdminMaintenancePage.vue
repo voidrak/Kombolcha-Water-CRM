@@ -6,6 +6,7 @@ import { useMaintenanceStore } from '@/stores/maintenance';
 
 const { getAllMaintenances } = useMaintenanceStore()
 const { deleteMaintenance } = useMaintenanceStore();
+const { updateMaintenance } = useMaintenanceStore();
 
 const maintenances = ref([]);
 const filters = ref({});
@@ -38,6 +39,11 @@ const isActiveFilter = (filterKey, filterValue) => {
 
 const handleDelete = (id) => {
   deleteMaintenance(id);
+  fetchMaintenances();
+
+}
+const handleApprove = (id) => {
+  updateMaintenance(id, "approve");
   fetchMaintenances();
 
 }
@@ -85,7 +91,7 @@ const formatDate = (date) => {
           <div class="absolute top-0 right-5 space-x-3 ">
             <button @click="handleDelete(maintenance.id)"
               class="px-2 py-1 mt-2 rounded-md bg-red-500 text-white">Delete</button>
-            <button v-if="maintenance.completed"
+            <button @click="handleApprove(maintenance.id)" v-if="maintenance.completed && !maintenance.approved"
               class="px-2 py-1 mt-2 rounded-md bg-green-500 text-white">Approve</button>
           </div>
         </div>
