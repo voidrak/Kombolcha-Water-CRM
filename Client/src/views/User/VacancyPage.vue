@@ -12,7 +12,7 @@ import GuestLayout from '@/layout/GuestLayout.vue';
         <div
           class="bg-white  shadow-xl shadow-gray-100 w-full max-w-4xl flex flex-col sm:flex-row gap-3 sm:items-center  justify-between px-5 py-4 rounded-md">
           <div>
-            <span class="text-dark-blue text-sm">Engineering</span>
+
             <h3 class="font-bold mt-px">Senior Full Stack Backend Engineer</h3>
             <div class="flex items-center gap-3 mt-2">
               <span class="bg-gray-100 text-light-blue rounded-full px-3 py-1 text-sm">Full-time</span>
@@ -36,7 +36,7 @@ import GuestLayout from '@/layout/GuestLayout.vue';
         <div
           class="bg-white  shadow-xl shadow-gray-100 w-full max-w-4xl flex flex-col sm:flex-row gap-3 sm:items-center  justify-between px-5 py-4 rounded-md">
           <div>
-            <span class="text-dark-blue text-sm">Engineering</span>
+
             <h3 class="font-bold mt-px">Senior Full Stack Backend Engineer</h3>
             <div class="flex items-center gap-3 mt-2">
               <span class="bg-gray-100 text-light-blue rounded-full px-3 py-1 text-sm">Full-time</span>
@@ -60,7 +60,7 @@ import GuestLayout from '@/layout/GuestLayout.vue';
         <div
           class="bg-white  shadow-xl shadow-gray-100 w-full max-w-4xl flex flex-col sm:flex-row gap-3 sm:items-center  justify-between px-5 py-4 rounded-md">
           <div>
-            <span class="text-dark-blue text-sm">Engineering</span>
+
             <h3 class="font-bold mt-px">Senior Full Stack Backend Engineer</h3>
             <div class="flex items-center gap-3 mt-2">
               <span class="bg-gray-100 text-light-blue rounded-full px-3 py-1 text-sm">Full-time</span>
@@ -84,7 +84,7 @@ import GuestLayout from '@/layout/GuestLayout.vue';
         <div
           class="bg-white  shadow-xl shadow-gray-100 w-full max-w-4xl flex flex-col sm:flex-row gap-3 sm:items-center  justify-between px-5 py-4 rounded-md">
           <div>
-            <span class="text-dark-blue text-sm">Engineering</span>
+
             <h3 class="font-bold mt-px">Senior Full Stack Backend Engineer</h3>
             <div class="flex items-center gap-3 mt-2">
               <span class="bg-gray-100 text-light-blue rounded-full px-3 py-1 text-sm">Full-time</span>

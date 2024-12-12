@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\VacancyController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,18 @@ Route::delete('/users/{user}', function (User $user) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/feedbacks', [FeedbackController::class, 'index']);
     Route::post('/feedbacks', [FeedbackController::class, 'store']);
-    Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy']);
+    Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy'])->middleware(AdminMiddleware::class);;
 });
+
+Route::get('/vacancies', [VacancyController::class, 'index']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/vacancies', [VacancyController::class, 'store'])->middleware(AdminMiddleware::class);
+    Route::put('/vacancies/{vacancy}', [VacancyController::class, 'update'])->middleware(AdminMiddleware::class);
+    Route::delete('/vacancies/{vacancy}', [VacancyController::class, 'destroy'])->middleware(AdminMiddleware::class);
+});
+
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/maintenances', [MaintenanceController::class, 'index']);
     Route::post('/maintenances', [MaintenanceController::class, 'store']);

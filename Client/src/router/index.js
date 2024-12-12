@@ -11,6 +11,7 @@ import AdminMaintenancePage from '@/views/Admin/AdminMaintenancePage.vue'
 import AdminUser from '@/views/Admin/AdminUser.vue'
 import AdminFeedback from '@/views/Admin/AdminFeedback.vue'
 import MaintenanceHome from '@/views/Maintenance/MaintenanceHome.vue'
+import AdminVacancy from '@/views/Admin/AdminVacancy.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -77,6 +78,12 @@ const router = createRouter({
       path: "/admin/feedback",
       name: "AdminFeedback",
       component: AdminFeedback,
+      meta: { admin: true },
+    },
+    {
+      path: "/admin/vacancy",
+      name: "AdminVacancy",
+      component: AdminVacancy,
       meta: { admin: true },
     },
     {

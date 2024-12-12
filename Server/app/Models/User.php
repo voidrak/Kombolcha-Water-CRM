@@ -43,6 +43,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Maintenance::class, 'submitted_by');
     }
+    public function vacancies()
+    {
+        return $this->hasMany(Vacancy::class, 'created_by');
+    }
 
 
 
