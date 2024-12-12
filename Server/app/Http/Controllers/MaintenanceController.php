@@ -33,10 +33,7 @@ class MaintenanceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Maintenance $maintenance)
-    {
-        //
-    }
+    public function show(Maintenance $maintenance) {}
 
     /**
      * Update the specified resource in storage.

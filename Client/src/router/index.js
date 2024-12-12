@@ -6,6 +6,7 @@ import OrderMaintenance from '@/views/User/OrderMaintenance.vue'
 import SubmitFeedback from '@/views/User/SubmitFeedback.vue'
 import { useAuthStore } from "@/stores/auth";
 import VacancyPage from '@/views/User/VacancyPage.vue'
+import AdminHome from '@/views/Admin/AdminHome.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,17 +19,21 @@ const router = createRouter({
     {
       path: '/register',
       name: 'Register',
-      component: RegisterPage
+      component: RegisterPage,
+      meta: { guest: true },
+
     },
     {
       path: '/login',
       name: 'Login',
-      component: LoginPage
+      component: LoginPage,
+      meta: { guest: true },
     },
     {
       path: '/vacancy',
       name: 'Vacancy',
       component: VacancyPage,
+      meta: { hybrid: true },
 
     },
     {
@@ -44,6 +49,12 @@ const router = createRouter({
       component: SubmitFeedback,
       meta: { auth: true },
     },
+    {
+      path: "/admin",
+      name: "adminHome",
+      component: AdminHome,
+      meta: { admin: true },
+    }
 
   ],
 })
@@ -58,11 +69,14 @@ router.beforeEach(async (to, from) => {
   if (authStore.user?.role === "admin" && to.meta.auth) {
     return { name: "adminHome" };
   }
+  if (authStore.user?.role === "admin" && to.meta.hybrid) {
+    return { name: "adminHome" };
+  }
   if (authStore.user?.role !== "admin" && to.meta.admin) {
-    return { name: "home" };
+    return { name: "Home" };
   }
   if (authStore.user && to.meta.guest) {
-    return { name: "home" };
+    return { name: "Home" };
   }
   if (!authStore.user && to.meta.auth) {
     return { name: "Login" };
