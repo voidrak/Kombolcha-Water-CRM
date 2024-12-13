@@ -9,7 +9,7 @@ const authStore = useAuthStore();
 
 <template>
   <header>
-    <nav class="flex items-center justify-between p-6 container mx-auto">
+    <nav class="flex items-center border-b border-gray-300 justify-between p-6 container mx-auto">
       <!-- Logo -->
       <Logo />
 
@@ -40,13 +40,14 @@ const authStore = useAuthStore();
 
           </ul>
         </div>
-        <RouterLink :to="{ name: 'Vacancy' }" href="#"
+        <RouterLink :to="{ name: 'Vacancy' }"
           class="block font-bold mt-4 lg:inline-block hover:text-gray-700 lg:mt-0 mr-10">
           Vacancy
         </RouterLink>
-        <a href="#" class="block font-bold hover:text-gray-700 mt-4 lg:inline-block lg:mt-0 mr-10">
+        <RouterLink :to="{ name: 'AboutUs' }"
+          class="block font-bold hover:text-gray-700 mt-4 lg:inline-block lg:mt-0 mr-10">
           About us
-        </a>
+        </RouterLink>
 
       </div>
 

@@ -12,6 +12,7 @@ import AdminUser from '@/views/Admin/AdminUser.vue'
 import AdminFeedback from '@/views/Admin/AdminFeedback.vue'
 import MaintenanceHome from '@/views/Maintenance/MaintenanceHome.vue'
 import AdminVacancy from '@/views/Admin/AdminVacancy.vue'
+import AboutUs from '@/views/User/AboutUs.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,13 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: HomeView,
+      meta: { hybrid: true },
+
+    },
+    {
+      path: '/about-us',
+      name: 'AboutUs',
+      component: AboutUs,
       meta: { hybrid: true },
 
     },
