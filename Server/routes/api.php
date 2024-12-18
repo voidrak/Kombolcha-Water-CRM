@@ -5,6 +5,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\CustomerServiceExpert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -15,12 +16,12 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('/users', function () {
-    return User::where('role', 'user')->get();
-})->middleware('auth:sanctum')->middleware(AdminMiddleware::class);;
+    return User::where('role', 'user')->latest()->get();
+})->middleware('auth:sanctum')->middleware(CustomerServiceExpert::class);;
 
 Route::delete('/users/{user}', function (User $user) {
     return $user->delete();
-})->middleware('auth:sanctum')->middleware(AdminMiddleware::class);;
+})->middleware('auth:sanctum')->middleware(CustomerServiceExpert::class);;
 
 
 

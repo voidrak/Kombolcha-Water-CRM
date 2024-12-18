@@ -1,5 +1,6 @@
 <script setup>
 import AdminLayout from '@/layout/AdminLayout.vue';
+import CustomerExpertLayout from '@/layout/CustomerExpertLayout.vue';
 import { useUserStore } from '@/stores/user';
 import { onMounted, ref } from 'vue';
 
@@ -22,7 +23,7 @@ const handleDelete = async (id) => {
 </script>
 
 <template>
-  <AdminLayout>
+  <CustomerExpertLayout>
     <div v-if="users" class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
       <table class="w-full table-fixed">
         <thead>
@@ -46,5 +47,5 @@ const handleDelete = async (id) => {
         </tbody>
       </table>
     </div>
-  </AdminLayout>
+  </CustomerExpertLayout>
 </template>

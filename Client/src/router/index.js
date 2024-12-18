@@ -8,11 +8,11 @@ import { useAuthStore } from "@/stores/auth";
 import VacancyPage from '@/views/User/VacancyPage.vue'
 import AdminHome from '@/views/Admin/AdminHome.vue'
 import AdminMaintenancePage from '@/views/Admin/AdminMaintenancePage.vue'
-import AdminUser from '@/views/Admin/AdminUser.vue'
 import AdminFeedback from '@/views/Admin/AdminFeedback.vue'
 import MaintenanceHome from '@/views/Maintenance/MaintenanceHome.vue'
 import AdminVacancy from '@/views/Admin/AdminVacancy.vue'
 import AboutUs from '@/views/User/AboutUs.vue'
+import CustomerServiceHome from '@/views/Customer_Service_Expert/CustomerServiceHome.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -77,10 +77,10 @@ const router = createRouter({
       meta: { admin: true },
     },
     {
-      path: "/admin/users",
-      name: "AdminUser",
-      component: AdminUser,
-      meta: { admin: true },
+      path: "/users",
+      name: "CustomerServiceHome",
+      component: CustomerServiceHome,
+      meta: { CustomerService: true },
     },
     {
       path: "/admin/feedback",
@@ -116,6 +116,15 @@ router.beforeEach(async (to, from) => {
   }
   if (authStore.user?.role === "maintenance" && to.meta.hybrid) {
     return { name: "MaintenanceHome" };
+  }
+  if (authStore.user?.role === "customer_service" && to.meta.guest) {
+    return { name: "CustomerServiceHome" };
+  }
+  if (authStore.user?.role === "customer_service" && to.meta.auth) {
+    return { name: "CustomerServiceHome" };
+  }
+  if (authStore.user?.role === "customer_service" && to.meta.hybrid) {
+    return { name: "CustomerServiceHome" };
   }
   if (authStore.user?.role === "admin" && to.meta.guest) {
     return { name: "adminHome" };
