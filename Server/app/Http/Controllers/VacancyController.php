@@ -12,7 +12,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        return Vacancy::all();
+        return Vacancy::latest()->get();
     }
 
     /**
