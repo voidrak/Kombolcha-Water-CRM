@@ -114,9 +114,14 @@ router.beforeEach(async (to, from) => {
   if (authStore.user?.role === "maintenance" && to.meta.auth) {
     return { name: "MaintenanceHome" };
   }
+  if (authStore.user?.role === "maintenance" && to.meta.CustomerService) {
+    return { name: "MaintenanceHome" };
+  }
   if (authStore.user?.role === "maintenance" && to.meta.hybrid) {
     return { name: "MaintenanceHome" };
   }
+
+
   if (authStore.user?.role === "customer_service" && to.meta.guest) {
     return { name: "CustomerServiceHome" };
   }
@@ -126,6 +131,8 @@ router.beforeEach(async (to, from) => {
   if (authStore.user?.role === "customer_service" && to.meta.hybrid) {
     return { name: "CustomerServiceHome" };
   }
+
+
   if (authStore.user?.role === "admin" && to.meta.guest) {
     return { name: "adminHome" };
   }
@@ -135,13 +142,21 @@ router.beforeEach(async (to, from) => {
   if (authStore.user?.role === "admin" && to.meta.hybrid) {
     return { name: "adminHome" };
   }
+  if (authStore.user?.role === "admin" && to.meta.CustomerService) {
+    return { name: "adminHome" };
+  }
   if (authStore.user?.role !== "admin" && to.meta.admin) {
     return { name: "Home" };
   }
+
+
   if (authStore.user && to.meta.guest) {
     return { name: "Home" };
   }
   if (!authStore.user && to.meta.auth) {
+    return { name: "Login" };
+  }
+  if (!authStore.user && to.meta.CustomerService) {
     return { name: "Login" };
   }
 });
