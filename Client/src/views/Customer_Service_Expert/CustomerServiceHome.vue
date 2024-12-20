@@ -1,4 +1,5 @@
 <script setup>
+import DeleteUserModal from '@/components/Customer_Service_Expert/DeleteUserModal.vue';
 import EditUserModal from '@/components/Customer_Service_Expert/EditUserModal.vue';
 import AdminLayout from '@/layout/AdminLayout.vue';
 import CustomerExpertLayout from '@/layout/CustomerExpertLayout.vue';
@@ -10,7 +11,9 @@ const { deleteUser } = useUserStore();
 
 const users = ref([]);
 const searchQuery = ref('');
+
 const isEditOpen = ref(false)
+const isDeleteOpen = ref(false)
 
 
 const selectedUser = reactive({
@@ -27,10 +30,6 @@ onMounted(async () => {
 
 })
 
-const handleDelete = async (id) => {
-  deleteUser(id);
-  users.value = await getUsers();
-}
 
 
 const filteredUsers = computed(() => {
@@ -56,10 +55,21 @@ function openEditModal(user) {
 
 }
 
+function closeDeleteModal() {
+  isDeleteOpen.value = false
+}
+function openDeleteModal(user) {
+  isDeleteOpen.value = true
+  selectedUser.user_id = user.id
+
+}
+
 
 const updateUser = async () => {
   users.value = await getUsers();
 };
+
+
 
 
 </script>
@@ -71,6 +81,9 @@ const updateUser = async () => {
       <EditUserModal @closeEditModal="closeEditModal" @updateUser="updateUser" :isEditOpen="isEditOpen"
         :user_id="selectedUser.user_id" :user_name="selectedUser.user_name" :user_woreda="selectedUser.user_woreda"
         :user_kebele="selectedUser.user_kebele" :user_house_number="selectedUser.user_house_number" />
+
+      <DeleteUserModal @closeDeleteModal="closeDeleteModal" @updateUser="updateUser" :isDeleteOpen="isDeleteOpen"
+        :user_id="selectedUser.user_id" />
 
       <div class=" pt-2 relative py-4 max-w-screen-md text-gray-600">
         <input v-model="searchQuery"
@@ -110,7 +123,7 @@ const updateUser = async () => {
             <td class="py-4 px-6 border-b border-gray-200 truncate">{{ user.house_number }}</td>
 
             <td class="py-4 cursor-pointer  gap-x-4 flex justify-center px-6 border-b border-gray-200">
-              <span @click="handleDelete(user.id)" class="bg-red-500 text-white py-1 px-2 rounded-sm ">Delete</span>
+              <span @click="openDeleteModal(user)" class="bg-red-500 text-white py-1 px-2 rounded-sm ">Delete</span>
               <span @click="openEditModal(user)" class="bg-green-500 text-white py-1 px-2 rounded-sm ">Update</span>
             </td>
           </tr>
