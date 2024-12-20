@@ -14,7 +14,23 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed ',
+            'woreda' => 'required|string ',
+            'kebele' => 'required|numeric ',
+            'house_number' => 'required|numeric ',
         ]);
+
+        $uniqueCombination = User::where('woreda', $fields['woreda'])
+            ->where('kebele', $fields['kebele'])
+            ->where('house_number', $fields['house_number'])
+            ->exists();
+
+        if ($uniqueCombination) {
+            return response()->json([
+                'errors' => [
+                    'location' => 'The combination of woreda, kebele, and house number has already been taken.',
+                ]
+            ], 422);
+        }
 
         $user =  User::create($fields);
 
