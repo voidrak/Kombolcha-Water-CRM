@@ -9,19 +9,65 @@ use App\Http\Middleware\CustomerServiceExpert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
 
+//--------------  Get All  User ------------------------------- //
+
+
 Route::get('/users', function () {
     return User::where('role', 'user')->latest()->get();
 })->middleware('auth:sanctum')->middleware(CustomerServiceExpert::class);;
 
+
+//--------------  Delete User ------------------------------- //
+
+
 Route::delete('/users/{user}', function (User $user) {
     return $user->delete();
-})->middleware('auth:sanctum')->middleware(CustomerServiceExpert::class);;
+})->middleware('auth:sanctum')->middleware(CustomerServiceExpert::class);
+
+//--------------  Update User ------------------------------- //
+
+Route::put('/users/{user}', function (User $user, Request $request) {
+
+    $fields = $request->validate([
+        'name' => [
+            "required",
+            "max:255",
+            Rule::unique('users')->where(function ($query) use ($user) {
+                return $query->where("id", $user->id);
+            })->ignore($user->id)
+        ],
+        'woreda' => 'required|string ',
+        'kebele' => 'required|numeric ',
+        'house_number' => 'required|numeric ',
+    ]);
+
+
+
+    $uniqueCombination = User::where('woreda', $fields['woreda'])
+        ->where('kebele', $fields['kebele'])
+        ->where('house_number', $fields['house_number'])
+        ->where('id', '!=', $user->id)
+        ->exists();
+
+    if ($uniqueCombination) {
+        return response()->json([
+            'errors' => [
+                'location' => 'This Location has already been taken.',
+            ]
+        ], 422);
+    }
+
+    $user->update($fields);
+
+    return $user;
+})->middleware('auth:sanctum')->middleware(CustomerServiceExpert::class);
 
 
 

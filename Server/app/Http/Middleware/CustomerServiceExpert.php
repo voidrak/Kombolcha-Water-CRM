@@ -19,6 +19,6 @@ class CustomerServiceExpert
             return $next($request);
         }
 
-        return ['message' => "Customer Service Expert Authorization Required"];
+        return response()->json(['message' => 'Customer Service Expert Authorization Required'], 403);
     }
 }
