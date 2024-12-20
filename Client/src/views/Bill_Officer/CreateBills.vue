@@ -12,17 +12,21 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 import BillOfficerLayout from '@/layout/BillOfficerLayout.vue';
 import { useUserStore } from '@/stores/user';
 import DatePicker from 'primevue/datepicker';
-
 import InputNumber from 'primevue/inputnumber';
+import { useBillStore } from '@/stores/billes';
+import { storeToRefs } from 'pinia';
 
 
 const { getUsers } = useUserStore();
+const { createBill } = useBillStore();
+const { errors } = storeToRefs(useBillStore());
 
 const users = ref([]);
 
 const formData = reactive({
   user_id: "",
-  month: "",
+  month: null,
+  year: "",
   amount: ""
 })
 
@@ -53,8 +57,15 @@ watch(selected, (newSelected) => {
   formData.user_id = newSelected.id;
 });
 
+const handleDateChange = (event) => {
+  const value = event.target.value;
+  const [year, month] = value.split('-');
+  formData.month = parseInt(month);
+  formData.year = parseInt(year);
+};
+
 const submit = () => {
-  console.log(formData);
+  createBill(formData)
 }
 
 
@@ -107,15 +118,23 @@ const submit = () => {
               </TransitionRoot>
             </div>
           </Combobox>
-
+          <p v-if="errors.user_id" class="text-sm text-red-500">
+            {{ errors.user_id[0] }}
+          </p>
 
           <div class="max-w-sm  ">
             <label className="mb-2 md:text-base block text-xs font-bold uppercase tracking-wide text-black"
               htmlFor="name">
               Select The Month
             </label>
-            <DatePicker v-model="formData.month" view="month" dateFormat="mm/yy" showIcon fluid :showOnFocus="false" />
+
+            <input type="month" id="month" @change="handleDateChange"
+              class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-bg-light-green" />
+            <p v-if="errors.month || errors.year" class="text-sm text-red-500">
+              {{ errors.month[0] || errors.year[0] }}
+            </p>
           </div>
+
 
           <div class=" max-w-sm ">
             <label className="mb-2 md:text-base block text-xs font-bold uppercase tracking-wide text-black"
@@ -123,6 +142,11 @@ const submit = () => {
               Amount
             </label>
             <InputNumber v-model="formData.amount" inputId="currency-us" suffix=" Br" locale="en-US" fluid />
+
+            <p v-if="errors.amount" class="text-sm text-red-500">
+              {{ errors.amount[0] }}
+            </p>
+
           </div>
         </div>
         <button @click="submit"

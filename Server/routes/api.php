@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\BillOfficerMiddleware;
 use App\Http\Middleware\CustomerServiceExpert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -91,6 +93,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/maintenances', [MaintenanceController::class, 'store']);
     Route::put('/maintenances/{maintenance}', [MaintenanceController::class, 'update']);
     Route::delete('/maintenances/{maintenance}', [MaintenanceController::class, 'destroy'])->middleware(AdminMiddleware::class);
+});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/bills', [BillController::class, 'index']);
+    Route::post('/bills', [BillController::class, 'store'])->middleware(BillOfficerMiddleware::class);
 });
 
 

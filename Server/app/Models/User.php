@@ -50,6 +50,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Vacancy::class, 'created_by');
     }
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
+    }
 
 
 

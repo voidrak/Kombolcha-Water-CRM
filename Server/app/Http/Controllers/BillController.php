@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bill;
-use App\Http\Requests\StoreBillRequest;
-use App\Http\Requests\UpdateBillRequest;
+use Illuminate\Http\Request;
 
 class BillController extends Controller
 {
@@ -13,20 +12,42 @@ class BillController extends Controller
      */
     public function index()
     {
-        //
+        return Bill::with("user")->latest()->get();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBillRequest $request)
+    public function store(Request $request)
     {
-        //
+
+
+        $validated = $request->validate([
+            "user_id" => 'required|exists:users,id',
+            "amount" => 'required',
+            "month" => 'required | max:2',
+            "year" => 'required | max:4',
+        ]);
+
+
+        $validated['bill_number'] = $this->generateUniqueBillNumber();
+
+        $bill = Bill::create($validated);
+
+        return $bill;
     }
 
-    /**
-     * Display the specified resource.
-     */
+
+    private function generateUniqueBillNumber()
+    {
+        do {
+            $billNumber = random_int(1000000000, 9999999999);
+        } while (Bill::where('bill_number', $billNumber)->exists());
+
+        return $billNumber;
+    }
+
+
     public function show(Bill $bill)
     {
         //
@@ -35,7 +56,7 @@ class BillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBillRequest $request, Bill $bill)
+    public function update(Request $request, Bill $bill)
     {
         //
     }
