@@ -27,10 +27,12 @@ class AuthController extends Controller
         if ($uniqueCombination) {
             return response()->json([
                 'errors' => [
-                    'location' => 'The combination of woreda, kebele, and house number has already been taken.',
+                    'location' => 'This Location has already been taken.',
                 ]
             ], 422);
         }
+
+
 
         $user =  User::create($fields);
 

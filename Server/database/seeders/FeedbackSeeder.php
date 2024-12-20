@@ -45,7 +45,7 @@ class FeedbackSeeder extends Seeder
         foreach ($feedbackMessages as $message) {
             Feedback::factory()->create([
                 'message' => $message,
-                'submitted_by' => User::factory()->create()->id, // Create a new user for each feedback
+                'submitted_by' => User::factory()->create()->id,
             ]);
         }
     }

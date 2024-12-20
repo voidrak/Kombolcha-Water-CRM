@@ -35,7 +35,7 @@ onMounted(() => (errors.value = {}));
           <Logo />
         </div>
 
-        <form @submit.prevent="console.log(formData)">
+        <form @submit.prevent="submitForm">
           <div class="space-y-6">
             <div>
               <label for="name" class="mb-2 block text-sm text-gray-800">Full Name</label>
@@ -86,8 +86,8 @@ onMounted(() => (errors.value = {}));
                   :disabled="true"
                   class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-bg-light-green"
                   placeholder="Enter woreda" />
-                <p v-if="errors.woreda" class="text-sm text-red-500">
-                  {{ errors.woreda[0] }}
+                <p v-if="errors.location" class="text-sm text-red-500">
+                  {{ errors.location }}
                 </p>
               </div>
               <div>
@@ -100,9 +100,11 @@ onMounted(() => (errors.value = {}));
                   <option>4</option>
                   <option>5</option>
                   <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
                 </select>
-                <p v-if="errors.kebele" class="text-sm text-red-500">
-                  {{ errors.kebele[0] }}
+                <p v-if="errors.location" class="text-sm text-red-500">
+                  {{ errors.location }}
                 </p>
               </div>
               <div>
@@ -110,9 +112,9 @@ onMounted(() => (errors.value = {}));
                 <input v-model="formData.house_number" id="house_number" name="house_number" type="text"
                   autocomplete="house_number"
                   class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-bg-light-green"
-                  placeholder="Enter house_number" />
-                <p v-if="errors.house_number" class="text-sm text-red-500">
-                  {{ errors.house_number[0] }}
+                  placeholder="Enter House Number" />
+                <p v-if="errors.location" class="text-sm text-red-500">
+                  {{ errors.location }}
                 </p>
               </div>
             </div>
