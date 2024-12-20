@@ -94,6 +94,9 @@ const updateUser = async () => {
           <tr class="bg-gray-100">
             <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Name</th>
             <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Email</th>
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Woreda</th>
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Kebele</th>
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">House Number</th>
 
             <th class="w-1/4 text-center py-4 px-6  text-gray-600 font-bold uppercase">Option</th>
           </tr>
@@ -102,6 +105,9 @@ const updateUser = async () => {
           <tr v-for="user in filteredUsers">
             <td class="py-4 px-6 border-b border-gray-200">{{ user.name }}</td>
             <td class="py-4 px-6 border-b border-gray-200 truncate">{{ user.email }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 truncate">{{ user.woreda }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 truncate">{{ user.kebele }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 truncate">{{ user.house_number }}</td>
 
             <td class="py-4 cursor-pointer  gap-x-4 flex justify-center px-6 border-b border-gray-200">
               <span @click="handleDelete(user.id)" class="bg-red-500 text-white py-1 px-2 rounded-sm ">Delete</span>
