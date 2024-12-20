@@ -1,14 +1,25 @@
 <script setup>
+import EditUserModal from '@/components/Customer_Service_Expert/EditUserModal.vue';
 import AdminLayout from '@/layout/AdminLayout.vue';
 import CustomerExpertLayout from '@/layout/CustomerExpertLayout.vue';
 import { useUserStore } from '@/stores/user';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 
 const { getUsers } = useUserStore();
 const { deleteUser } = useUserStore();
 
 const users = ref([]);
 const searchQuery = ref('');
+const isEditOpen = ref(false)
+
+
+const selectedUser = reactive({
+  user_id: null,
+  user_name: null,
+  user_woreda: null,
+  user_kebele: null,
+  user_house_number: null,
+})
 
 onMounted(async () => {
   users.value = await getUsers();
@@ -21,6 +32,7 @@ const handleDelete = async (id) => {
   users.value = await getUsers();
 }
 
+
 const filteredUsers = computed(() => {
   if (!searchQuery.value) {
     return users.value;
@@ -30,6 +42,25 @@ const filteredUsers = computed(() => {
     user.email.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+function closeEditModal() {
+  isEditOpen.value = false
+}
+function openEditModal(user) {
+  isEditOpen.value = true
+  selectedUser.user_id = user.id,
+    selectedUser.user_name = user.name,
+    selectedUser.user_woreda = user.woreda,
+    selectedUser.user_kebele = user.kebele,
+    selectedUser.user_house_number = user.house_number
+
+
+}
+
+
+const updateUser = async () => {
+  users.value = await getUsers();
+};
+
 
 </script>
 
@@ -37,9 +68,11 @@ const filteredUsers = computed(() => {
   <CustomerExpertLayout>
     <div v-if="users" class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
       <!-- Search Bar -->
+      <EditUserModal @closeEditModal="closeEditModal" @updateUser="updateUser" :isEditOpen="isEditOpen"
+        :user_id="selectedUser.user_id" :user_name="selectedUser.user_name" :user_woreda="selectedUser.user_woreda"
+        :user_kebele="selectedUser.user_kebele" :user_house_number="selectedUser.user_house_number" />
 
-
-      <div class="pt-2 relative py-4 max-w-screen-md  text-gray-600">
+      <div class=" pt-2 relative py-4 max-w-screen-md text-gray-600">
         <input v-model="searchQuery"
           class="border-2 w-full border-gray-300 bg-white h-10 py-2 px-5 pr-16 rounded-lg text-sm focus:outline-none"
           type="search" name="search" placeholder="Search">
@@ -72,7 +105,7 @@ const filteredUsers = computed(() => {
 
             <td class="py-4 cursor-pointer  gap-x-4 flex justify-center px-6 border-b border-gray-200">
               <span @click="handleDelete(user.id)" class="bg-red-500 text-white py-1 px-2 rounded-sm ">Delete</span>
-              <span class="bg-green-500 text-white py-1 px-2 rounded-sm ">Update</span>
+              <span @click="openEditModal(user)" class="bg-green-500 text-white py-1 px-2 rounded-sm ">Update</span>
             </td>
           </tr>
         </tbody>
