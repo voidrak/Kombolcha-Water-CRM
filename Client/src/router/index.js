@@ -13,6 +13,8 @@ import MaintenanceHome from '@/views/Maintenance/MaintenanceHome.vue'
 import AdminVacancy from '@/views/Admin/AdminVacancy.vue'
 import AboutUs from '@/views/User/AboutUs.vue'
 import CustomerServiceHome from '@/views/Customer_Service_Expert/CustomerServiceHome.vue'
+import BillOfficerHome from '@/views/Bill_Officer/BillOfficerHome.vue'
+import CreateBills from '@/views/Bill_Officer/CreateBills.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -99,6 +101,18 @@ const router = createRouter({
       name: "MaintenanceHome",
       component: MaintenanceHome,
       meta: { Maintenance: true },
+    },
+    {
+      path: "/bills",
+      name: "BillOfficerHome",
+      component: BillOfficerHome,
+      meta: { BillOfficer: true },
+    },
+    {
+      path: "/bills/create",
+      name: "CreateBills",
+      component: CreateBills,
+      meta: { BillOfficer: true },
     }
 
   ],
@@ -128,8 +142,28 @@ router.beforeEach(async (to, from) => {
   if (authStore.user?.role === "customer_service" && to.meta.auth) {
     return { name: "CustomerServiceHome" };
   }
+  if (authStore.user?.role === "customer_service" && to.meta.Maintenance) {
+    return { name: "CustomerServiceHome" };
+  }
   if (authStore.user?.role === "customer_service" && to.meta.hybrid) {
     return { name: "CustomerServiceHome" };
+  }
+
+
+  if (authStore.user?.role === "bill_officer" && to.meta.guest) {
+    return { name: "BillOfficerHome" };
+  }
+  if (authStore.user?.role === "bill_officer" && to.meta.auth) {
+    return { name: "BillOfficerHome" };
+  }
+  if (authStore.user?.role === "bill_officer" && to.meta.CustomerService) {
+    return { name: "BillOfficerHome" };
+  }
+  if (authStore.user?.role === "bill_officer" && to.meta.Maintenance) {
+    return { name: "BillOfficerHome" };
+  }
+  if (authStore.user?.role === "bill_officer" && to.meta.hybrid) {
+    return { name: "BillOfficerHome" };
   }
 
 

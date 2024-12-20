@@ -15,7 +15,7 @@ class CustomerServiceExpert
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() && $request->user()->role === 'customer_service') {
+        if ($request->user() && $request->user()->role === 'customer_service' || $request->user()->role === 'bill_officer') {
             return $next($request);
         }
 
