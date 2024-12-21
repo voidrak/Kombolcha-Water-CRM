@@ -29,13 +29,16 @@ const authStore = useAuthStore();
           </button>
 
           <ul id="dropdownMenu"
-            class='w-0  h-0   transition-all duration-200 ease-linear  block right-2    absolute shadow-lg border border-gray-100 bg-white group-hover:py-2 z-[1000] group-hover:min-w-full group-hover:w-max rounded group-hover:h-[100px] overflow-hidden'>
+            class='w-0  h-0   transition-all duration-200 ease-linear  block right-2    absolute shadow-lg border border-gray-100 bg-white group-hover:py-2 z-[1000] group-hover:min-w-full group-hover:w-max rounded group-hover:h-[150px] overflow-hidden'>
             <RouterLink :to="{ name: 'OrderMaintenance' }">
               <li class='py-2.5 px-5 hover:bg-light-blue text-black text-sm cursor-pointer'>Order Maintenance
               </li>
             </RouterLink>
             <RouterLink :to="{ name: 'SubmitFeedback' }">
               <li class='py-2.5 px-5 hover:bg-light-blue text-black text-sm cursor-pointer'>Give Feedback</li>
+            </RouterLink>
+            <RouterLink :to="{ name: 'UserBill' }">
+              <li class='py-2.5 px-5 hover:bg-light-blue text-black text-sm cursor-pointer'>View Bill</li>
             </RouterLink>
 
           </ul>

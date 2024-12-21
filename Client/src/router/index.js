@@ -15,6 +15,7 @@ import AboutUs from '@/views/User/AboutUs.vue'
 import CustomerServiceHome from '@/views/Customer_Service_Expert/CustomerServiceHome.vue'
 import BillOfficerHome from '@/views/Bill_Officer/BillOfficerHome.vue'
 import CreateBills from '@/views/Bill_Officer/CreateBills.vue'
+import BillPage from '@/views/User/BillPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -64,6 +65,13 @@ const router = createRouter({
       path: '/feedback',
       name: 'SubmitFeedback',
       component: SubmitFeedback,
+      meta: { auth: true },
+    },
+
+    {
+      path: '/user/bill',
+      name: 'UserBill',
+      component: BillPage,
       meta: { auth: true },
     },
     {

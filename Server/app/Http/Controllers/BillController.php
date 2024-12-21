@@ -48,9 +48,9 @@ class BillController extends Controller
     }
 
 
-    public function show(Bill $bill)
+    public function show()
     {
-        //
+        return Bill::where('user_id', request()->user()->id)->where("is_paid", false)->orderBy('year', 'desc')->orderBy('month', 'desc')->latest()->get();
     }
 
     /**

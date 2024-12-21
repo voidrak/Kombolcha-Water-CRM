@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import router from "@/router";
+import { useAuthStore } from "./auth";
 export const useBillStore = defineStore("billStore", {
   state: () => {
     return {
@@ -15,6 +16,27 @@ export const useBillStore = defineStore("billStore", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+      });
+      const data = await res.json();
+
+      if (data.errors) {
+        this.errors = data.errors;
+      } else {
+        this.errors = {};
+        return data
+      }
+    },
+    async getUserBills() {
+
+
+
+      const res = await fetch("/api/user/bill", {
+        method: "Get",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+
+
       });
       const data = await res.json();
 

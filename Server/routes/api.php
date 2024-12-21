@@ -109,7 +109,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/bills', [BillController::class, 'index']);
     Route::post('/bills', [BillController::class, 'store'])->middleware(BillOfficerMiddleware::class);
-    Route::put('/bills/{bill}', [BillController::class, 'update'])->middleware(BillOfficerMiddleware::class);
+    Route::put('/bills/{bill}', [BillController::class, 'update']);
+    Route::get('/user/bill', [BillController::class, 'show']);
 });
 
 
