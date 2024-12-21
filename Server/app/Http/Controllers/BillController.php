@@ -12,7 +12,7 @@ class BillController extends Controller
      */
     public function index()
     {
-        return Bill::with("user")->latest()->get();
+        return Bill::where("is_paid", false)->with("user")->orderBy('year', 'desc')->orderBy('month', 'desc')->latest()->get();
     }
 
     /**
@@ -58,7 +58,11 @@ class BillController extends Controller
      */
     public function update(Request $request, Bill $bill)
     {
-        //
+        $validated = $request->validate([
+            "is_paid" => 'required|boolean'
+        ]);
+
+        return $bill->update($validated);
     }
 
     /**

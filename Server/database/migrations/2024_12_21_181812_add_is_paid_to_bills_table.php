@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bills', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained("users")->onDelete('cascade');
-            $table->decimal('amount');
-            $table->integer("month");
-            $table->integer("year");
-            $table->integer("bill_number")->unique();
+        Schema::table('bills', function (Blueprint $table) {
             $table->boolean('is_paid')->default(false);
-            $table->timestamps();
         });
     }
 
@@ -28,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bills');
+        Schema::table('bills', function (Blueprint $table) {
+            $table->dropColumn('is_paid');
+        });
     }
 };

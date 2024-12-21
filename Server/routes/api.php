@@ -72,12 +72,18 @@ Route::put('/users/{user}', function (User $user, Request $request) {
 })->middleware('auth:sanctum')->middleware(CustomerServiceExpert::class);
 
 
+//-----------------------  Feedback Route   ------------------------------//
+
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/feedbacks', [FeedbackController::class, 'index']);
     Route::post('/feedbacks', [FeedbackController::class, 'store']);
     Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy'])->middleware(AdminMiddleware::class);;
 });
+
+
+//-----------------------  Vacancy Route   ------------------------------//
+
 
 Route::get('/vacancies', [VacancyController::class, 'index']);
 
@@ -88,15 +94,22 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
+//-----------------------  Maintenance Route   ------------------------------//
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/maintenances', [MaintenanceController::class, 'index']);
     Route::post('/maintenances', [MaintenanceController::class, 'store']);
     Route::put('/maintenances/{maintenance}', [MaintenanceController::class, 'update']);
     Route::delete('/maintenances/{maintenance}', [MaintenanceController::class, 'destroy'])->middleware(AdminMiddleware::class);
 });
+
+
+//-----------------------  BIll Route   ------------------------------//
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/bills', [BillController::class, 'index']);
     Route::post('/bills', [BillController::class, 'store'])->middleware(BillOfficerMiddleware::class);
+    Route::put('/bills/{bill}', [BillController::class, 'update'])->middleware(BillOfficerMiddleware::class);
 });
 
 

@@ -46,6 +46,27 @@ export const useBillStore = defineStore("billStore", {
     },
 
 
+    /*********************  Update Bill ********************** */
+
+    async updateBill(bill, isPaid) {
+
+      const res = await fetch(`/api/bills/${bill}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ is_paid: isPaid })
+      })
+      const data = await res.json()
+
+      if (data.errors) {
+        this.errors = data.errors
+      } else {
+        this.errors = {}
+      }
+    },
+
+
 
   },
 });

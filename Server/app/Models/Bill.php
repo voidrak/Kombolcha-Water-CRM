@@ -10,7 +10,7 @@ class Bill extends Model
     /** @use HasFactory<\Database\Factories\BillFactory> */
     use HasFactory;
 
-    protected $fillable = ['user_id', 'month', 'year', 'amount', 'bill_number'];
+    protected $fillable = ['user_id', 'month', 'year', 'amount', 'bill_number', 'is_paid'];
 
     public function user()
     {

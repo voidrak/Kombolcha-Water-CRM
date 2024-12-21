@@ -1,4 +1,5 @@
 <script setup>
+import UpdateBillModal from '@/components/Bill_Officer/UpdateBillModal.vue';
 import BillOfficerLayout from '@/layout/BillOfficerLayout.vue';
 import { useBillStore } from '@/stores/billes';
 import { computed, onMounted, reactive, ref } from 'vue';
@@ -10,11 +11,11 @@ const { getAllBills } = useBillStore();
 
 const bills = ref([]);
 const searchQuery = ref('');
+const isUpdateOpen = ref(false)
+const selectedBillId = ref(null)
 
 onMounted(async () => {
   bills.value = await getAllBills();
-
-
 })
 
 const filteredBills = computed(() => {
@@ -27,11 +28,31 @@ const filteredBills = computed(() => {
     bill.month.toString().includes(searchQuery.value) || bill.year.toString().includes(searchQuery.value)
   );
 });
+
+function closeUpdateModal() {
+  isUpdateOpen.value = false
+  selectedBillId.value = null
+
+}
+
+
+function openUpdateModal(id) {
+  isUpdateOpen.value = true
+  selectedBillId.value = id
+  console.log(selectedBillId.value);
+
+}
+
+const updateBill = async () => {
+  bills.value = await getAllBills();
+};
+
 </script>
 
 <template>
   <BillOfficerLayout>
-
+    <UpdateBillModal @updateBill="updateBill" @closeUpdateModal="closeUpdateModal" :isUpdateOpen="isUpdateOpen"
+      :bill_id="selectedBillId" />
     <div class=" pt-2 relative py-4 max-w-screen-md text-gray-600">
       <input v-model="searchQuery"
         class="border-2 w-full border-gray-300 bg-white h-10 py-2 px-5 pr-16 rounded-lg text-sm focus:outline-none"
@@ -54,6 +75,7 @@ const filteredBills = computed(() => {
           <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Month</th>
           <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Year</th>
           <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Bill Number</th>
+          <th class="w-1/4 py-4 px-6 text- text-gray-600 font-bold uppercase">Mark Us Paid</th>
 
         </tr>
       </thead>
@@ -64,6 +86,11 @@ const filteredBills = computed(() => {
           <td class="py-4 px-6 border-b border-gray-200 truncate">{{ bill.month }}</td>
           <td class="py-4 px-6 border-b border-gray-200 truncate">{{ bill.year }}</td>
           <td class="py-4 px-6 border-b border-gray-200 truncate">{{ bill.bill_number }}</td>
+
+          <td @click="openUpdateModal(bill.id)"
+            class="py-4 cursor-pointer  gap-x-4 flex justify-center px-6 border-b border-gray-200">
+            <span class="bg-green-500 text-white py-1 px-2 rounded-sm ">Mark Paid</span>
+          </td>
 
 
         </tr>
