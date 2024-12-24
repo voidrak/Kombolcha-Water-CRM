@@ -10,7 +10,7 @@ const jobs = ref([]);
 const searchQuery = ref('');
 onMounted(async () => {
   jobs.value = await getAllVacancies();
-  console.log(jobs.value);
+
 })
 
 const handleDelete = async (id) => {

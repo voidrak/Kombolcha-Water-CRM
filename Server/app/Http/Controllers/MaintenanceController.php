@@ -32,7 +32,6 @@ class MaintenanceController extends Controller
     {
 
         $validated = $request->validate([
-            "address" => 'required|string',
             'phone_number' => ['required', 'regex:/^09\d{8}$/'],
             "description" => 'required|string',
         ]);
