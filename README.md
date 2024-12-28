@@ -35,7 +35,7 @@ Kombolcha Water CRM aims to modernize the customer service processes of KWSSO, t
 
 - **Backend**: Laravel
 - **Frontend**: Vue.js
-- **Database**: MySQL
+- **Database**: Mysqlite
 - **Version Control**: Git
  
 
