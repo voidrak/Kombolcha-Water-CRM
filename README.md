@@ -10,7 +10,7 @@ Welcome to **Kombolcha Water CRM**, a web-based customer service management syst
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
+ 
 
 ## Introduction
 
