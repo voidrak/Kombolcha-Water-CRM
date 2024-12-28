@@ -1,6 +1,6 @@
 # Kombolcha Water CRM
 
-Welcome to **Kombolcha Water CRM**, a web-based customer service management system developed using **Laravel** for the backend and **Vue.js** for the frontend. This application is designed to enhance the operations of the Kombolcha Water Supply Service Office (KWSSO) by providing a streamlined platform for managing customer interactions and service requests. This project has been developed as a final year project for students.
+Welcome to **Kombolcha Water CRM**, a web-based customer service management system developed using **Laravel** for the backend and **Vue.js** for the frontend. This application is designed to enhance the operations of the Kombolcha Water Supply Service Office (KWSSO) by providing a streamlined platform for managing customer interactions and service requests. I  developed this project  as a final year project for students ( Upwork this is your fault 😁).
 
 ## Table of Contents
 
