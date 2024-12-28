@@ -14,7 +14,7 @@ Welcome to **Kombolcha Water CRM**, a web-based customer service management syst
 
 ## Introduction
 
-Kombolcha Water CRM aims to modernize the customer service processes of KWSSO, transitioning from a traditional desktop application to an efficient web-based system. The application will facilitate customer registration, bill calculations, meter readings, and reporting, ultimately improving service delivery. Please note that this project is ongoing and not yet finished, with continuous updates and enhancements planned.
+Kombolcha Water CRM aims to modernize the customer service processes of KWSSO, transitioning from a traditional desktop application to an efficient web-based system. The application will facilitate customer registration, bill calculations, meter readings, and reporting, ultimately improving service delivery.  
 
 ## Features
 
