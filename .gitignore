@@ -3,3 +3,4 @@
 
 # Ignore all .txt files
 *.txt
+Server/database/database.sqlite
