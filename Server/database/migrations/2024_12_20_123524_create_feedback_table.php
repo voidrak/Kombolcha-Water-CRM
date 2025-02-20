@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('bills', function (Blueprint $table) {
-            $table->boolean('is_paid')->default(false);
+        Schema::create('feedback', function (Blueprint $table) {
+            $table->id();
+            $table->string("message");
+            $table->foreignId("submitted_by")->constrained('users')->onDelete("cascade");
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('bills', function (Blueprint $table) {
-            $table->dropColumn('is_paid');
-        });
+        Schema::dropIfExists('feedbacks');
     }
 };

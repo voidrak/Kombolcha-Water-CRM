@@ -86,7 +86,7 @@ const formatDate = (date) => {
             <h1>Issued Date: <span class="font-bold">{{ formatDate(maintenance.created_at) }}</span></h1>
             <h1>Description: <span class="font-bold">{{ maintenance.description }}</span></h1>
             <h1>Status: <span class="font-bold">{{ `${maintenance.completed ? 'Completed' : 'Not Completed'}`
-                }}</span></h1>
+            }}</span></h1>
           </div>
           <div class="absolute top-0 right-5 space-x-3 ">
             <button @click="handleDelete(maintenance.id)"

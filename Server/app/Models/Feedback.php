@@ -9,7 +9,7 @@ class Feedback extends Model
 {
     /** @use HasFactory<\Database\Factories\FeedbackFactory> */
     use HasFactory;
-
+    protected $table = "feedbacks";
     protected $fillable = ['message', 'submitted_by'];
 
     public function creator()

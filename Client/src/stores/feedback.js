@@ -36,7 +36,7 @@ export const useFeedbackStore = defineStore("feedbackStore", {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-
+      console.log(data);
       if (data.errors) {
         this.errors = data.errors;
       } else {
