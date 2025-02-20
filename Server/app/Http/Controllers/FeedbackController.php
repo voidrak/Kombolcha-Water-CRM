@@ -12,7 +12,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        return Feedback::with("creator")->get();
+        return Feedback::with("creator")->latest()->get();
     }
 
     /**
