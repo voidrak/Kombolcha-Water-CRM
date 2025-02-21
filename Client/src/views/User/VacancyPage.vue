@@ -31,6 +31,7 @@ onMounted(async () => {
           <div>
 
             <h3 class="font-bold mt-px"> {{ job.title }}</h3>
+            <h3 class=" text-sm mt-px max-w-lg my-4"> {{ job.description }}</h3>
             <div class="flex items-center gap-3 mt-2">
               <span class=" text-light-blue rounded-full px-3 py-1 text-sm"> {{ job.type }}</span>
               <span class="text-slate-600 text-sm flex gap-1 items-center"> <svg xmlns="http://www.w3.org/2000/svg"

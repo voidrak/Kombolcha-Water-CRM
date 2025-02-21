@@ -69,7 +69,8 @@ const authStore = useAuthStore();
             </button>
           </RouterLink>
         </div>
-        <div v-else class="">
+        <div v-else class="flex gap-x-8 items-center">
+          <p class="font-semibold">{{ authStore.user.name }}</p>
           <form @submit.prevent="authStore.logout" class="">
             <button
               class="hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2  px-5 py-2 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-red-500">Log

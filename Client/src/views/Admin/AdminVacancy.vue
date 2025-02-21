@@ -12,6 +12,7 @@ const formData = reactive({
   title: "",
   location: "",
   type: "",
+  description: "",
 });
 
 const submitForm = () => {
@@ -22,7 +23,7 @@ const submitForm = () => {
 <template>
   <AdminLayout>
     <div class="flex max-h-[calc(100vh-90px)] my-4 flex-col justify-center py-0 px-4">
-      <div class="mx-auto w-full max-w-md rounded-2xl border border-gray-300 p-8">
+      <div class="mx-auto w-full max-w-lg rounded-2xl border border-gray-300 p-8">
         <div class="mb-12 text-center">
           <Logo />
 
@@ -46,6 +47,16 @@ const submitForm = () => {
                 placeholder="Enter Job location" />
               <p v-if="errors.location" class="text-sm text-red-500">
                 {{ errors.location[0] }}
+              </p>
+            </div>
+            <div>
+              <label for="location" class="mb-2 block text-sm text-gray-800">Job description</label>
+              <textarea v-model="formData.description" id="description" name="description" type="text"
+                autocomplete="country-name"
+                class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-bg-light-green"
+                placeholder="Enter Job description" />
+              <p v-if="errors.description" class="text-sm text-red-500">
+                {{ errors.description[0] }}
               </p>
             </div>
             <div>

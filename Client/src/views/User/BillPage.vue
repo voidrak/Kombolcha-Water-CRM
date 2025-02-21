@@ -28,7 +28,7 @@ const handlePayment = async (id) => {
 <template>
   <GuestLayout>
     <div class="  mt-16 px-10 mx-auto">
-      <table class="w-full table-fixed">
+      <table v-if="bill" class="w-full table-fixed">
         <thead>
           <tr class="bg-gray-100">
 
@@ -57,7 +57,10 @@ const handlePayment = async (id) => {
 
           </tr>
         </tbody>
+
       </table>
+      <div v-else class="text-3xl mt-16 text-center    w-full font-semibold text-blue-600">You Have No Unpaid Bill
+      </div>
     </div>
   </GuestLayout>
 </template>

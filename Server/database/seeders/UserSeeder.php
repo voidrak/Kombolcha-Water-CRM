@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('Pa$$w0rd!'), // Hash the password
+            'password' => Hash::make('12345678'), // Hash the password
             'role' => 'admin',
             'woreda' => 'Kombolcha',
             'kebele' => 1,
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Test User',
             'email' => 'test_user@gmail.com',
-            'password' => Hash::make('Pa$$w0rd!'), // Hash the password
+            'password' => Hash::make('12345678'), // Hash the password
             'role' => 'user',
             'woreda' => 'Kombolcha',
             'kebele' => 1,
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Coordinator',
             'email' => 'coodinator@gmail.com',
-            'password' => Hash::make('Pa$$w0rd!'), // Hash the password
+            'password' => Hash::make('12345678'), // Hash the password
             'role' => 'coordinator',
             'woreda' => 'Kombolcha',
             'kebele' => 1,
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Customer Service Expert',
             'email' => 'customerserviceexpert@gmail.com',
-            'password' => Hash::make('Pa$$w0rd!'), // Hash the password
+            'password' => Hash::make('12345678'), // Hash the password
             'role' => 'customer_service',
             'woreda' => 'Kombolcha',
             'kebele' => 1,
@@ -57,11 +57,20 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Bill Officer',
             'email' => 'billofficer@gmail.com',
-            'password' => Hash::make('Pa$$w0rd!'), // Hash the password
+            'password' => Hash::make('12345678'), // Hash the password
             'role' => 'bill_officer',
             'woreda' => 'Kombolcha',
             'kebele' => 1,
             'house_number' => 5,
+        ]);
+        User::create([
+            'name' => 'Maintenance',
+            'email' => 'maintenance@gmail.com',
+            'password' => Hash::make('12345678'), // Hash the password
+            'role' => 'maintenance',
+            'woreda' => 'Kombolcha',
+            'kebele' => 1,
+            'house_number' => 6,
         ]);
 
         // Create additional users using the factory

@@ -40,6 +40,7 @@ class AuthController extends Controller
 
         return ['user' => $user, 'token' => $token->plainTextToken];
     }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -63,6 +64,7 @@ class AuthController extends Controller
 
         return  $user;
     }
+
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();

@@ -70,11 +70,10 @@ const formatDate = (date) => {
           <div class="space-y-2">
             <h1>Customer: <span class="font-bold">{{ maintenance.creator.name }}</span></h1>
             <h1>Phone Number: <span class="font-bold">{{ maintenance.phone_number }}</span></h1>
-            <h1>Address: <span class="font-bold">{{ maintenance.address }}</span></h1>
             <h1>Issued Date: <span class="font-bold">{{ formatDate(maintenance.created_at) }}</span></h1>
             <h1>Description: <span class="font-bold">{{ maintenance.description }}</span></h1>
             <h1>Status: <span class="font-bold">{{ `${maintenance.completed ? 'Completed' : 'Not Completed'}`
-                }}</span></h1>
+            }}</span></h1>
           </div>
           <div class="absolute top-0 right-5 space-x-3 ">
             <button @click="handleComplete(maintenance.id)" v-if="!maintenance.completed"

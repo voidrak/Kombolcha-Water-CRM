@@ -23,7 +23,8 @@ class VacancyController extends Controller
         $validated = $request->validate([
             "title" => 'required | string ',
             "location" => 'required| string ',
-            "type" => 'required| string '
+            "type" => 'required| string ',
+            "description" => 'required| string '
         ]);
 
         return  Vacancy::create($validated);

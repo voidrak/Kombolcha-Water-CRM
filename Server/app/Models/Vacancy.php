@@ -10,7 +10,7 @@ class Vacancy extends Model
     /** @use HasFactory<\Database\Factories\VacancyFactory> */
     use HasFactory;
 
-    protected $fillable = ['type', 'location', 'title', 'created_by'];
+    protected $fillable = ['type', 'location', 'title', 'created_by', 'description'];
 
 
     public function creator()
