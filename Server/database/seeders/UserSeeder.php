@@ -35,16 +35,6 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Coordinator',
-            'email' => 'coodinator@gmail.com',
-            'password' => Hash::make('12345678'), // Hash the password
-            'role' => 'coordinator',
-            'woreda' => 'Kombolcha',
-            'kebele' => 1,
-            'house_number' => 3,
-        ]);
-
-        User::create([
             'name' => 'Customer Service Expert',
             'email' => 'customerserviceexpert@gmail.com',
             'password' => Hash::make('12345678'), // Hash the password
