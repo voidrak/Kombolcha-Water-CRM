@@ -62,6 +62,15 @@ class UserSeeder extends Seeder
             'kebele' => 1,
             'house_number' => 6,
         ]);
+        User::create([
+            'name' => 'Manager',
+            'email' => 'manager@gmail.com',
+            'password' => Hash::make('12345678'), // Hash the password
+            'role' => 'manager',
+            'woreda' => 'Kombolcha',
+            'kebele' => 1,
+            'house_number' => 8,
+        ]);
 
         // Create additional users using the factory
         User::factory()->count(30)->create();

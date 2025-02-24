@@ -26,6 +26,22 @@ export const useBillStore = defineStore("billStore", {
         return data
       }
     },
+    async getBillPaidBills() {
+      const res = await fetch("/api/bills/paid", {
+        method: "Get",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+
+      if (data.errors) {
+        this.errors = data.errors;
+      } else {
+        this.errors = {};
+        return data
+      }
+    },
     async getUserBills() {
 
 

@@ -16,6 +16,7 @@ import CustomerServiceHome from '@/views/Customer_Service_Expert/CustomerService
 import BillOfficerHome from '@/views/Bill_Officer/BillOfficerHome.vue'
 import CreateBills from '@/views/Bill_Officer/CreateBills.vue'
 import BillPage from '@/views/User/BillPage.vue'
+import BillOfficerPaidBillsPage from '@/views/Bill_Officer/BillOfficerPaidBillsPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -120,6 +121,12 @@ const router = createRouter({
       path: "/bills/create",
       name: "CreateBills",
       component: CreateBills,
+      meta: { BillOfficer: true },
+    },
+    {
+      path: "/bills/paid",
+      name: "BillOfficerPaidBills",
+      component: BillOfficerPaidBillsPage,
       meta: { BillOfficer: true },
     }
 

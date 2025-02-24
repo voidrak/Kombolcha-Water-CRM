@@ -12,7 +12,27 @@ class BillController extends Controller
      */
     public function index()
     {
-        return Bill::where("is_paid", false)->with("user")->orderBy('year', 'desc')->orderBy('month', 'desc')->latest()->get();
+        $bills = Bill::where("is_paid", false)->with("user")->orderBy('year', 'desc')->orderBy('month', 'desc')->latest()->get();
+
+        $formattedBills = $bills->map(function ($bill) {
+            $bill->month = date("F", mktime(0, 0, 0, $bill->month, 1)); // Convert month number to month name
+            return $bill;
+        });
+
+        return $formattedBills;
+    }
+
+
+    public function getBillPaidBills()
+    {
+        $bills = Bill::where("is_paid", true)->with("user")->orderBy('year', 'desc')->orderBy('month', 'desc')->latest()->get();
+
+        $formattedBills = $bills->map(function ($bill) {
+            $bill->month = date("F", mktime(0, 0, 0, $bill->month, 1)); // Convert month number to month name
+            return $bill;
+        });
+
+        return $formattedBills;
     }
 
     /**
@@ -50,7 +70,14 @@ class BillController extends Controller
 
     public function show()
     {
-        return Bill::where('user_id', request()->user()->id)->where("is_paid", false)->orderBy('year', 'desc')->orderBy('month', 'desc')->latest()->get();
+        $bills = Bill::where('user_id', request()->user()->id)->where("is_paid", false)->orderBy('year', 'desc')->orderBy('month', 'desc')->latest()->get();
+
+        $formattedBills = $bills->map(function ($bill) {
+            $bill->month = date("F", mktime(0, 0, 0, $bill->month, 1)); // Convert month number to month name
+            return $bill;
+        });
+
+        return $formattedBills;
     }
 
     /**
