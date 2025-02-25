@@ -1,8 +1,8 @@
 <script setup>
-import AdminLayout from '@/layout/AdminLayout.vue';
 import { useFeedbackStore } from '@/stores/feedback';
 import { onMounted, ref } from 'vue';
 import { format } from 'date-fns';
+import MangerLayout from '@/layout/MangerLayout.vue';
 
 const { getAllFeedbacks } = useFeedbackStore()
 const { deleteFeedback } = useFeedbackStore()
@@ -29,9 +29,10 @@ const formatDate = (date) => {
 </script>
 
 <template>
-  <AdminLayout>
+  <MangerLayout>
+
     <div class="">
-      <h1 class="text-4xl text-center font-bold mt-6"> <span class="text-light-blue">Feedback</span> List
+      <h1 class="text-4xl text-center font-bold mt-6"> <span class="text-light-blue">Report</span> List
       </h1>
 
       <div class="mt-12 w-full flex flex-col gap-y-6 ml-16">
@@ -50,5 +51,5 @@ const formatDate = (date) => {
         </div>
       </div>
     </div>
-  </AdminLayout>
+  </MangerLayout>
 </template>

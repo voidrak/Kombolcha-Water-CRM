@@ -78,7 +78,7 @@ Route::put('/users/{user}', function (User $user, Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/feedbacks', [FeedbackController::class, 'index']);
     Route::post('/feedbacks', [FeedbackController::class, 'store']);
-    Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy'])->middleware(AdminMiddleware::class);;
+    Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy']);
 });
 
 

@@ -35,7 +35,7 @@ const authStore = useAuthStore();
               </li>
             </RouterLink>
             <RouterLink :to="{ name: 'SubmitFeedback' }">
-              <li class='py-2.5 px-5 hover:bg-light-blue text-black text-sm cursor-pointer'>Give Feedback</li>
+              <li class='py-2.5 px-5 hover:bg-light-blue text-black text-sm cursor-pointer'>Submit Report</li>
             </RouterLink>
             <RouterLink :to="{ name: 'UserBill' }">
               <li class='py-2.5 px-5 hover:bg-light-blue text-black text-sm cursor-pointer'>View Bill</li>

@@ -8,7 +8,7 @@ import { useAuthStore } from "@/stores/auth";
 import VacancyPage from '@/views/User/VacancyPage.vue'
 import AdminHome from '@/views/Admin/AdminHome.vue'
 import AdminMaintenancePage from '@/views/Admin/AdminMaintenancePage.vue'
-import AdminFeedback from '@/views/Admin/AdminFeedback.vue'
+import AdminFeedback from '@/views/Manager/ManagerHome.vue'
 import MaintenanceHome from '@/views/Maintenance/MaintenanceHome.vue'
 import AdminVacancy from '@/views/Admin/AdminVacancy.vue'
 import AboutUs from '@/views/User/AboutUs.vue'
@@ -17,6 +17,7 @@ import BillOfficerHome from '@/views/Bill_Officer/BillOfficerHome.vue'
 import CreateBills from '@/views/Bill_Officer/CreateBills.vue'
 import BillPage from '@/views/User/BillPage.vue'
 import BillOfficerPaidBillsPage from '@/views/Bill_Officer/BillOfficerPaidBillsPage.vue'
+import ManagerHome from '@/views/Manager/ManagerHome.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -128,7 +129,14 @@ const router = createRouter({
       name: "BillOfficerPaidBills",
       component: BillOfficerPaidBillsPage,
       meta: { BillOfficer: true },
-    }
+    },
+    {
+      path: "/manager",
+      name: "MangerHome",
+      component: ManagerHome,
+      meta: { Manager: true },
+    },
+
 
   ],
 })
@@ -149,6 +157,9 @@ router.beforeEach(async (to, from) => {
   if (authStore.user?.role === "maintenance" && to.meta.hybrid) {
     return { name: "MaintenanceHome" };
   }
+  if (authStore.user?.role === "maintenance" && to.meta.manager) {
+    return { name: "MaintenanceHome" };
+  }
 
 
   if (authStore.user?.role === "customer_service" && to.meta.guest) {
@@ -161,6 +172,9 @@ router.beforeEach(async (to, from) => {
     return { name: "CustomerServiceHome" };
   }
   if (authStore.user?.role === "customer_service" && to.meta.hybrid) {
+    return { name: "CustomerServiceHome" };
+  }
+  if (authStore.user?.role === "customer_service" && to.meta.manager) {
     return { name: "CustomerServiceHome" };
   }
 
@@ -180,6 +194,26 @@ router.beforeEach(async (to, from) => {
   if (authStore.user?.role === "bill_officer" && to.meta.hybrid) {
     return { name: "BillOfficerHome" };
   }
+  if (authStore.user?.role === "bill_officer" && to.meta.manager) {
+    return { name: "BillOfficerHome" };
+  }
+
+
+  if (authStore.user?.role === "manager" && to.meta.guest) {
+    return { name: "MangerHome" };
+  }
+  if (authStore.user?.role === "manager" && to.meta.auth) {
+    return { name: "MangerHome" };
+  }
+  if (authStore.user?.role === "manager" && to.meta.CustomerService) {
+    return { name: "MangerHome" };
+  }
+  if (authStore.user?.role === "manager" && to.meta.Maintenance) {
+    return { name: "MangerHome" };
+  }
+  if (authStore.user?.role === "manager" && to.meta.hybrid) {
+    return { name: "MangerHome" };
+  }
 
 
   if (authStore.user?.role === "admin" && to.meta.guest) {
@@ -195,6 +229,9 @@ router.beforeEach(async (to, from) => {
     return { name: "adminHome" };
   }
   if (authStore.user?.role !== "admin" && to.meta.admin) {
+    return { name: "Home" };
+  }
+  if (authStore.user?.role !== "admin" && to.meta.manager) {
     return { name: "Home" };
   }
 

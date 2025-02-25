@@ -10,7 +10,7 @@ import LandingWaterPlant from "/public/images/Stickney_Water_Plant.jpg"
       <div class="2xl:max-w-7xl flex flex-wrap items-center mx-auto">
         <div class="lg:flex-grow lg:w-1/2 lg:pr-24 md:mb-0 flex flex-col items-start mb-16 text-left">
           <h1 class="text-gray-900 md:text-6xl lg:text-8xl mb-8 text-4xl font-extrabold leading-none tracking-tighter">
-            Ensure Reliable Water Services for Your City.
+            Ensure Reliable Water Services for Kombolcha City.
           </h1>
           <p class="mb-8 text-base leading-relaxed text-left text-gray-600">
             Kombolcha City Water Supply helping communities with a seamless platform to manage water services
